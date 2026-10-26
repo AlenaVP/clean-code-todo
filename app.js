@@ -3,27 +3,31 @@ const addTaskButton = document.getElementsByTagName('button')[0];
 const incompleteTasksList = document.getElementById('incompleteTasks');
 const completedTasksList = document.getElementById('completed-tasks');
 
+const createButton = function (text, className) {
+  const button = document.createElement('button');
+  button.innerText = text;
+  button.className = className;
+
+  return button;
+};
+
 const createTaskElement = function (taskText) {
   const taskElement = document.createElement('li');
 
   const completionCheckbox = document.createElement('input');
-  const taskLabel = document.createElement('label');
-  const taskEditInput = document.createElement('input');
-  const editTaskButton = document.createElement('button');
-  const deleteTaskButton = document.createElement('button');
-  const deleteButtonIcon = document.createElement('img');
+  completionCheckbox.type = 'checkbox';
 
+  const taskLabel = document.createElement('label');
   taskLabel.innerText = taskText;
   taskLabel.className = 'task';
 
-  completionCheckbox.type = 'checkbox';
+  const taskEditInput = document.createElement('input');
   taskEditInput.type = 'text';
   taskEditInput.className = 'task';
 
-  editTaskButton.innerText = 'Edit';
-  editTaskButton.className = 'edit';
-
-  deleteTaskButton.className = 'delete';
+  const editTaskButton = createButton('Edit', 'edit');
+  const deleteTaskButton = createButton('', 'delete');
+  const deleteButtonIcon = document.createElement('img');
   deleteButtonIcon.src = './remove.svg';
   deleteTaskButton.appendChild(deleteButtonIcon);
 
