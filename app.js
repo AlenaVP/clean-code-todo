@@ -72,7 +72,10 @@ const deleteTask = function () {
 
 const moveTask = function (taskElement, targetList, onCompletionChange) {
   targetList.appendChild(taskElement);
-  bindTaskEvents(taskElement, onCompletionChange);
+
+  const completionCheckbox = taskElement.querySelector('input[type="checkbox"]');
+
+  completionCheckbox.onchange = onCompletionChange;
 };
 
 const taskCompleted = function () {
@@ -90,7 +93,7 @@ const bindTaskEvents = function (taskElement, onCompletionChange) {
 
   editTaskButton.addEventListener('click', editTask);
   deleteTaskButton.addEventListener('click', deleteTask);
-  completionCheckbox.addEventListener('change', onCompletionChange);
+  completionCheckbox.onchange = onCompletionChange;
 };
 
 addTaskButton.addEventListener('click', addTask);
